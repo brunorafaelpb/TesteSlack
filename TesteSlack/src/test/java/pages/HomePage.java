@@ -1,14 +1,19 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
-	
-	// Parte essencial do Page Object
-	private WebDriver navegador;
+import suporte.BasePage;
 
+public class HomePage extends BasePage{
+	
+	
 	public HomePage(WebDriver navegador) {
-		this.navegador = navegador;
+		super(navegador);
+	}
+
+	public String validarLogin() {
+		return navegador.findElement(By.id("team_menu_user_name")).getText().toString();
 	}
 	
 	

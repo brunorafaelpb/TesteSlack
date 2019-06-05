@@ -3,14 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+import suporte.BasePage;
 
-	// Parte essencial do Page Object
-	private WebDriver navegador;
+public class LoginPage extends BasePage{
 
 	public LoginPage(WebDriver navegador) {
-		this.navegador = navegador;
-	}
+		super(navegador);
+	}	
 
 	// Informar login
 	public LoginPage informarLogin(String email) {
@@ -32,4 +31,20 @@ public class LoginPage {
 		return new HomePage(navegador);
 
 	}
+	
+	public String validarDados() {
+		String teste = navegador.findElement(By.xpath("//p[@class=\"alert alert_error\"]")).getText();
+		System.out.println(teste);
+		return teste;
+	}
+	
+	
+	
+	public HomePage fazerLogin(String email, String senha) {
+		informarLogin(email);
+		informarSenha(senha);
+		clicarBotaoLogin();
+		return new HomePage(navegador);
+	}
+	
 }
